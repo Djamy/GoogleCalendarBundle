@@ -1,0 +1,21 @@
+{
+  "name": "djamy/google-calendar-bundle",
+  "type": "symfony-bundle",
+  "description": "GoogleCalendar Service with useful functions to manage google events",
+  "keywords": ["Google Calendar", "Google API"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Djamy Tirouche",
+      "email": "yo@djamy.me",
+      "homepage": "http://github.com/Djamy"
+    }
+  ],
+  "require": {
+    "php": ">=5.3",
+    "google/apiclient": "1.1.2"
+  },
+  "autoload": {
+    "psr-4": { "Djamy\\GoogleCalendarBundle\\": "" }
+  }
+}
