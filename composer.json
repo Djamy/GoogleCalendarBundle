@@ -13,6 +13,7 @@
   ],
   "require": {
     "php": ">=5.3",
+    "symfony/framework-bundle": "~2.3",
     "google/apiclient": "1.1.2"
   },
   "autoload": {
