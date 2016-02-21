@@ -235,7 +235,7 @@ class GoogleCalendarService
         $service = $this->getCalendarService();
 
         $timeMin = $start->format(\DateTime::RFC3339);
-        $timeMax = $end->add(new \DateInterval('P90D'))->format(\DateTime::RFC3339);
+        $timeMax = $end->format(\DateTime::RFC3339);
 
         // Params to send to Google
         $eventOptions = array(
