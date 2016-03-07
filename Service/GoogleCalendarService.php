@@ -22,6 +22,8 @@ class GoogleCalendarService
      * @var \Symfony\Component\Routing\RouterInterface $router
      */
     protected $router;
+    
+    protected $container;
 
     /**
      * Constructor
@@ -29,10 +31,11 @@ class GoogleCalendarService
      * @param array                                      $parameters
      * @param \Symfony\Component\Routing\RouterInterface $router
      */
-    public function __construct($parameters, $router)
+    public function __construct($parameters, $router, $container)
     {
         $this->parameters = $parameters;
         $this->router = $router;
+        $this->container = $container;
     }
 
     /**
@@ -45,7 +48,7 @@ class GoogleCalendarService
         $credentials = new \Google_Auth_AssertionCredentials(
             $this->parameters['client_email'],
             array($this->parameters['api_url']),
-            file_get_contents($this->parameters['api_key_file'])
+            file_get_contents($this->container->get('kernel')->getRootDir() . "/../" . $this->parameters['api_key_file'])
         );
 
         $client = new \Google_Client();
@@ -235,7 +238,7 @@ class GoogleCalendarService
         $service = $this->getCalendarService();
 
         $timeMin = $start->format(\DateTime::RFC3339);
-        $timeMax = $end->add(new \DateInterval('P90D'))->format(\DateTime::RFC3339);
+        $timeMax = $end->format(\DateTime::RFC3339);
 
         // Params to send to Google
         $eventOptions = array(

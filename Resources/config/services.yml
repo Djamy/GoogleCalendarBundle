@@ -1,5 +1,5 @@
 services:
     calendar.google:
         class: Djamy\GoogleCalendarBundle\Service\GoogleCalendarService
-        arguments: [%google_calendar%, @router]
-        public: false
+        arguments: [%google_calendar%, @router, @service_container]
+        public: true
