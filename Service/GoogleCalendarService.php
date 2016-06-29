@@ -249,4 +249,26 @@ class GoogleCalendarService
 
         return $eventList;
     }
+
+    /**
+     * Retrieve Google events filtered by parameters
+     *
+     * @param string   $calendarId
+     * @param array  $eventOptions
+     *
+     * @return object
+     */
+    public function getEventsByParams($calendarId, $eventOptions)
+    {
+        $service = $this->getCalendarService();
+
+        foreach(['timeMin', 'timeMax', 'updatedMin'] as $opt){
+            if(isset($eventOptions[$opt])) $eventOptions[$opt] = $eventOptions[$opt]->format(\DateTime::RFC3339);
+        }
+
+        $eventList = $service->events->listEvents($calendarId, $eventOptions);
+
+        return $eventList;
+    }
+
 }
